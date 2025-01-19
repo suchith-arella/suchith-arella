@@ -7,7 +7,11 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "docker:clean": "docker rm -vf $(docker ps -aq) && docker rmi -f $(docker images -aq)",
+    "docker:build": "docker buildx build --platform linux/amd64 -t gcr.io/suchith-arella .",
+    "docker:run":   "docker run --name vbreddy-blog -p 8080:80 -d gcr.io/suchith-arella",
+    "docker:push": "docker push gcr.io/suchith-arella"
   },
   "dependencies": {
     "react": "^18.3.1",
